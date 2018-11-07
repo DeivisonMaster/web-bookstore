@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cadastro de Livros</title>
+</h:head>
+<h:body>
+
+	<h:form id="formCadastroLivro" prependId="false">
+		<f:metadata>
+			<f:viewAction
+				action="#{controllerConsultaAutor.buscaPorTodosOsAutores()}" />
+		</f:metadata>
+
+		<fieldset>
+			<legend>Dados de Cadastro</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Titulo" />
+				<h:panelGroup>
+					<h:inputText id="titulo" value="#{controllerCadastroLivro.livro.titulo}"/>
+				</h:panelGroup>
+
+				<h:outputLabel value="ISBN" />
+				<h:panelGroup>
+					<h:inputText id="isbn" value="#{controllerCadastroLivro.livro.isbn}"/>
+				</h:panelGroup>
+
+				<h:outputLabel value="Autor" />
+				<h:panelGroup>
+					<h:selectOneMenu value="#{controllerCadastroLivro.livro.autor}"
+						label="Autor">
+						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+						<f:selectItems value="#{controllerConsultaAutor.autores}" />
+					</h:selectOneMenu>
+				</h:panelGroup>
+
+				<h:outputLabel value="Preço" />
+				<h:panelGroup>
+					<h:inputText id="preco" value="#{controllerCadastroLivro.livro.preco}"/>
+				</h:panelGroup>
+
+				<h:outputLabel value="Data de Lançamento" />
+				<h:panelGroup>
+					<h:inputText id="dataLancamento" value="#{controllerCadastroLivro.livro.dataLancamento}"/>
+				</h:panelGroup>
+
+				<h:commandButton action="#{controllerCadastroLivro.salvar}"
+					value="Gravar" />
+			</h:panelGrid>
+		</fieldset>
+
+	</h:form>
+
+</h:body>
+</html>

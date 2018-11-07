@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Cadastro de Autor</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<fieldset>
+			<legend>Dados do Autor</legend>
+			
+			<h:messages layout="table" errorStyle="color: red" warnStyle="color: blue"/>
+
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nome" for="nome" />
+				<h:panelGroup>
+					<h:inputText id="nome" value="#{controllerCadastroAutor.autor.nome}"/>
+				</h:panelGroup>
+
+				<h:commandButton action="#{controllerCadastroAutor.salvar}" value="Gravar" />
+			</h:panelGrid>
+		</fieldset>
+	</h:form>
+
+</h:body>
+</html>
