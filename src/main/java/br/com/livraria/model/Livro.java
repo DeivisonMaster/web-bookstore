@@ -1,5 +1,6 @@
 package br.com.livraria.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +17,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "livro")
-public class Livro {
+public class Livro implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -111,6 +114,7 @@ public class Livro {
 			return false;
 		return true;
 	}
-	
+
+
 	
 }

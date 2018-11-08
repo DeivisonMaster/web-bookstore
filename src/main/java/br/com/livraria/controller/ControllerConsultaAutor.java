@@ -34,4 +34,12 @@ public class ControllerConsultaAutor implements Serializable{
 		return this.serviceConsultaAutor.buscaPorTodosOsAutores();
 	}
 	
+	public boolean renderizaListaAutores() {
+		if(this.getAutores() == null || this.getAutores().isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+	
+	
 }

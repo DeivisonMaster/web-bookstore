@@ -22,7 +22,7 @@ public class ControllerCadastroAutor {
 		this.serviceCadastroAutor = new ServiceCadastroAutorImpl();
 	}
 	
-	public void salvar() {
+	public String salvar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.serviceCadastroAutor.salvar(autor);
@@ -31,6 +31,8 @@ public class ControllerCadastroAutor {
 		} catch (ManipulationException e) {
 			context.addMessage(null, new FacesMessage(e.getMessage()));
 		}
+		
+		return "cadastroLivro?faces-redirect=true";
 	}
 	
 	public Autor getAutor() {

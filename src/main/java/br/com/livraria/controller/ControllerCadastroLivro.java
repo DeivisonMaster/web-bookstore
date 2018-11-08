@@ -45,6 +45,10 @@ public class ControllerCadastroLivro implements Serializable{
 		}
 	}
 	
+	public String cadastrarAutor() {
+		return "cadastroAutor?faces-redirect=true";
+	}
+	
 	public Livro getLivro() {
 		return livro;
 	}

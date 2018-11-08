@@ -16,7 +16,7 @@
 		<!-- 		</f:metadata> -->
 
 		<fieldset>
-			<h:messages layout="table" errorStyle="color: red"
+			<h:messages id="msg" layout="table" errorStyle="color: red"
 				warnStyle="color: blue" />
 
 			<legend>Dados de cadastro do Livro</legend>
@@ -28,6 +28,8 @@
 						requiredMessage="O campo titulo é obrigatório"
 						validatorMessage="O campo titulo não pode ser inferior a 5 caracteres">
 						<f:validateLength minimum="5" />
+
+						<f:ajax event="blur" render="msg" />
 					</h:inputText>
 				</h:panelGroup>
 
@@ -44,82 +46,101 @@
 				<h:outputLabel value="Autor" />
 				<h:panelGroup>
 					<h:selectOneMenu value="#{controllerCadastroLivro.livro.autor}"
-						label="Autor">
+						label="Autor"
+						rendered="#{controllerConsultaAutor.renderizaListaAutores()}">
 						<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 						<f:selectItems var="autor"
 							value="#{controllerConsultaAutor.autores}"
 							itemLabel="#{autor.nome}" itemValue="#{autor}" />
 					</h:selectOneMenu>
+
+					<!-- 					<h:commandLink action="cadastroAutor" value="Cadastrar Autor" -->
+					<!-- 						rendered="#{not controllerConsultaAutor.renderizaListaAutores()}" -->
+					<!-- 						immediate="true" /> -->
+				</h:panelGroup>
+
+				<h:outputLabel value="Cadastrar Autor" />
+				<h:panelGroup>
+					<h:commandLink action="#{controllerCadastroLivro.cadastrarAutor()}"
+						value="Cadastrar Autor" immediate="true" />
 				</h:panelGroup>
 
 				<h:outputLabel value="Preço" />
 				<h:panelGroup>
 					<h:inputText id="preco"
-						value="#{controllerCadastroLivro.livro.preco}" />
+						value="#{controllerCadastroLivro.livro.preco}" required="true"
+						requiredMessage="O campo Preço é obrigatório">
+						<f:convertNumber type="currency" pattern="R$ #0.00"
+							currencySymbol="R$" locale="pt_BR" />
+					</h:inputText>
 				</h:panelGroup>
 
 				<h:outputLabel value="Data de Lançamento" />
 				<h:panelGroup>
 					<h:inputText id="dataLancamento"
-						value="#{controllerCadastroLivro.livro.dataLancamento}">
+						value="#{controllerCadastroLivro.livro.dataLancamento}"
+						required="true"
+						requiredMessage="O campo Data de Lançamento é obrigatório">
 						<f:convertDateTime pattern="dd/MM/yyyy"
 							timeZone="America/Sao_Paulo" />
 					</h:inputText>
 				</h:panelGroup>
 
 				<h:commandButton action="#{controllerCadastroLivro.salvar}"
-					value="Gravar" />
+					value="Gravar">
+					<f:ajax execute="@form" render="@form :formTabelaLivro:idTabelaLivros" />
+				</h:commandButton>
 			</h:panelGrid>
-
 			<br />
 
-			<h:dataTable var="livro"
-				value="#{controllerConsultaLivro.listaLivros}">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Id" />
-					</f:facet>
-					<h:outputText value="#{livro.id}" />
-				</h:column>
+			<h:form id="formTabelaLivro">
+				<h:dataTable id="idTabelaLivros" var="livro"
+					value="#{controllerConsultaLivro.listaLivros}">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Id" />
+						</f:facet>
+						<h:outputText value="#{livro.id}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Titulo" />
-					</f:facet>
-					<h:outputText value="#{livro.titulo}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Titulo" />
+						</f:facet>
+						<h:outputText value="#{livro.titulo}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Isbn" />
-					</f:facet>
-					<h:outputText value="#{livro.isbn}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Isbn" />
+						</f:facet>
+						<h:outputText value="#{livro.isbn}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Autor" />
-					</f:facet>
-					<h:outputText value="#{livro.autor.nome}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Autor" />
+						</f:facet>
+						<h:outputText value="#{livro.autor.nome}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Preço" />
-					</f:facet>
-					<h:outputText value="#{livro.preco}" />
-				</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Preço" />
+						</f:facet>
+						<h:outputText value="#{livro.preco}" />
+					</h:column>
 
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Data Lançamento" />
-					</f:facet>
-					<h:outputText value="#{livro.dataLancamento}" />
-				</h:column>
-			</h:dataTable>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data Lançamento" />
+						</f:facet>
+						<h:outputText value="#{livro.dataLancamento}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+
 		</fieldset>
-
 	</h:form>
-
 </h:body>
 </html>

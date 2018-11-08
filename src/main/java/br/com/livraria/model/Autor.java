@@ -1,5 +1,6 @@
 package br.com.livraria.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,7 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "autor")
-public class Autor {
+public class Autor implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
@@ -59,6 +63,8 @@ public class Autor {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }
