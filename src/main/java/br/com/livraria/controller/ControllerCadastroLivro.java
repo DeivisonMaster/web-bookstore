@@ -57,6 +57,7 @@ public class ControllerCadastroLivro implements Serializable{
 	}
 	
 	public void editar(Livro livro) {
+		
 	}
 	
 	public void remover(Livro livro) {

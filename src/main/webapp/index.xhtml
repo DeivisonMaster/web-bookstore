@@ -10,9 +10,11 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:commandLink action="cadastro/cadastroAutor" value="cadastro Autor" />
+			<h2>Página Inicial</h2>
+		
+			<h:commandLink action="#{controllerLogin.cadastrarAutor}" value="cadastro Autor" />
 			<br />
-			<h:commandLink action="cadastro/cadastroLivro" value="cadastro livro" />
+			<h:commandLink action="#{controllerLogin.cadastrarLivro}" value="cadastro livro" />
 		</h:form>
 	</ui:define>
 </ui:composition>
