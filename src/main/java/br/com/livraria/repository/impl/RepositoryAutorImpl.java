@@ -36,5 +36,19 @@ public class RepositoryAutorImpl implements RepositoryAutor{
 	public Autor buscaPorId(Long id) {
 		return this.entityManager.find(Autor.class, id);
 	}
+	
+	@Override
+	public void editar(Autor autor) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.merge(autor);
+		this.entityManager.getTransaction().commit();
+	}
+
+	@Override
+	public void excluir(Autor autor) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.remove(autor);
+		this.entityManager.getTransaction().commit();
+	}
 
 }

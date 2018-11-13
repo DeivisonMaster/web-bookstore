@@ -27,4 +27,11 @@ public class ServiceCadastroLivroImpl implements ServiceCadastroLivro{
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public void remover(Livro livro) throws ManipulationException{
+		Livro livroBanco = this.serviceLivro.buscarPorId(livro.getId());
+		
+		this.serviceLivro.remover(livroBanco);
+	}
+
 }

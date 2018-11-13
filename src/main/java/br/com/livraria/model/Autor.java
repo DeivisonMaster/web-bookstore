@@ -23,6 +23,9 @@ public class Autor implements Serializable{
 	@Column(nullable = false, length = 20)
 	private String nome;
 	
+	@Column(nullable = false)
+	private String email;
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,7 +41,15 @@ public class Autor implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

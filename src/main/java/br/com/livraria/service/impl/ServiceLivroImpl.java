@@ -45,5 +45,19 @@ public class ServiceLivroImpl implements ServiceLivro {
 		}
 		return null;
 	}
+
+	@Override
+	public void remover(Livro livro) throws ManipulationException {
+		try {
+			this.repositoryLivro.remover(livro);
+		} catch (Exception e) {
+			throw new ManipulationException("Erro ao remover o Livro", e);
+		}
+	}
+
+	@Override
+	public Livro buscarPorId(Long id) {
+		return this.repositoryLivro.buscarPorId(id);
+	}
 	
 }

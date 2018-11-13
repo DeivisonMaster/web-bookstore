@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">
+		Edição do Autor
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="formCadastroAutor" prependId="false">
+			<fieldset>
+				<legend>Dados de edição do Autor</legend>
+
+				<h:messages layout="table" errorStyle="color: red"
+					warnStyle="color: blue" />
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome" for="nome" />
+					<h:panelGroup>
+						<h:inputText id="nome"
+							value="#{controllerCadastroAutor.autor.nome}" />
+					</h:panelGroup>
+
+					<h:outputLabel value="Email" for="email" />
+					<h:panelGroup>
+						<h:inputText id="email" for="email"
+							value="#{controllerCadastroAutor.autor.email}">
+							<f:passThroughAttribute name="type" value="email" />
+						</h:inputText>
+					</h:panelGroup>
+
+					<h:commandButton value="Gravar"
+						action="#{controllerCadastroAutor.editar}" />
+					<h:commandButton value="Cancelar" action="cadastroAutor" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

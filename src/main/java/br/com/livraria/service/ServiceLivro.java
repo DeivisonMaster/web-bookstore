@@ -13,4 +13,8 @@ public interface ServiceLivro {
 
 	List<Livro> buscaPorTodosOsLivros();
 	
+	Livro buscarPorId(Long id);
+
+	void remover(Livro livro) throws ManipulationException;
+	
 }

@@ -7,9 +7,13 @@ import br.com.livraria.util.ManipulationException;
 
 public interface ServiceAutor {
 	
-	List<Autor> buscaPorTodosOsAutores();
+	List<Autor> buscaPorTodosOsAutores() throws ManipulationException;
 	
 	Autor buscaPorId(Long id);
 
 	void salvar(Autor autor) throws ManipulationException;
+
+	void editar(Autor autor);
+
+	void excluir(Autor autor);
 }

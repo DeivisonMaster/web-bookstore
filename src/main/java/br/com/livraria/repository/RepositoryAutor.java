@@ -11,4 +11,8 @@ public interface RepositoryAutor {
 	Autor buscaPorId(Long id);
 
 	void salvar(Autor autor);
+	
+	void editar(Autor autor);
+
+	void excluir(Autor autor);
 }

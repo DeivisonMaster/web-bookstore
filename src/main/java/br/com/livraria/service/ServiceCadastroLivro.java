@@ -10,4 +10,6 @@ public interface ServiceCadastroLivro {
 	
 	void atualizar(Long id);
 	
+	void remover(Livro livro) throws ManipulationException;
+	
 }

@@ -15,6 +15,7 @@ import br.com.livraria.util.ManipulationException;
 public class ControllerCadastroAutor {
 	
 	private Autor autor;
+	private Autor autorEdicao;
 	private ServiceCadastroAutor serviceCadastroAutor;
 	
 	public ControllerCadastroAutor() {
@@ -35,11 +36,35 @@ public class ControllerCadastroAutor {
 		return "cadastroLivro?faces-redirect=true";
 	}
 	
+	public String exibirEdicao() {
+		this.autor = this.serviceCadastroAutor.buscaPorId(this.autorEdicao.getId());
+		return "editaAutor";
+	}
+	
+	public String editar() {
+		this.serviceCadastroAutor.editar(this.autor);
+		return "cadastroAutor";
+	}
+	
+	public String excluir(Autor autor) {
+		this.serviceCadastroAutor.excluir(autor);
+		
+		return "cadastroAutor?faces-redirect=true";
+	}
+	
 	public Autor getAutor() {
 		return autor;
 	}
 	
 	public void setAutor(Autor autor) {
 		this.autor = autor;
+	}
+	
+	public Autor getAutorEdicao() {
+		return autorEdicao;
+	}
+	
+	public void setAutorEdicao(Autor autorEdicao) {
+		this.autorEdicao = autorEdicao;
 	}
 }

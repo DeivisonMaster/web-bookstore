@@ -13,4 +13,6 @@ public interface RepositoryLivro {
 	Livro buscarPorId(Long id);
 	
 	List<Livro> buscarPorTodosOsLivros();
+
+	void remover(Livro livro);
 }

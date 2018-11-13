@@ -1,31 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Cadastro de Autor</title>
-</h:head>
-<h:body>
+	<ui:define name="titulo">
+		Cadastro de Autor
+	</ui:define>
 
-	<h:form>
-		<fieldset>
-			<legend>Dados do Autor</legend>
+	<ui:define name="content">
+		<h:form id="formCadastroAutor" prependId="false">
+			<fieldset>
+				<legend>Dados do Autor</legend>
+
+				<h:messages layout="table" errorStyle="color: red"
+					warnStyle="color: blue" />
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome" for="nome" />
+					<h:panelGroup>
+						<h:inputText id="nome"
+							value="#{controllerCadastroAutor.autor.nome}" />
+					</h:panelGroup>
+					
+					<h:outputLabel value="Email" for="email"/>
+					<h:panelGroup>
+						<h:inputText id="email" value="#{controllerCadastroAutor.autor.email}">
+							<f:passThroughAttribute name="type" value="email"/>
+						</h:inputText>
+					</h:panelGroup>
+
+					<h:commandButton action="#{controllerCadastroAutor.salvar}"
+						value="Gravar" />
+				</h:panelGrid>
+			</fieldset>
 			
-			<h:messages layout="table" errorStyle="color: red" warnStyle="color: blue"/>
+			<br/>
+			
+			<h:dataTable id="idListaAutores" var="autor" value="#{controllerConsultaAutor.autores}" rendered="#{controllerConsultaAutor.autores != null}">
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Editar" />
+					</f:facet>
+					<h:commandLink value="editar" action="#{controllerCadastroAutor.exibirEdicao}">
+						<f:setPropertyActionListener value="#{autor}" target="#{controllerCadastroAutor.autorEdicao}" />
+					</h:commandLink>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Excluir" />
+					</f:facet>
+					<h:commandLink value="excluir" action="#{controllerCadastroAutor.excluir(autor)}"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
 
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Nome" for="nome" />
-				<h:panelGroup>
-					<h:inputText id="nome" value="#{controllerCadastroAutor.autor.nome}"/>
-				</h:panelGroup>
-
-				<h:commandButton action="#{controllerCadastroAutor.salvar}" value="Gravar" />
-			</h:panelGrid>
-		</fieldset>
-	</h:form>
-
-</h:body>
-</html>
+</ui:composition>

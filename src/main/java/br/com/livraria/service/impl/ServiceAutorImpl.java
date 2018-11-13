@@ -18,12 +18,12 @@ public class ServiceAutorImpl implements ServiceAutor {
 	}
 
 	@Override
-	public List<Autor> buscaPorTodosOsAutores() {
+	public List<Autor> buscaPorTodosOsAutores() throws ManipulationException {
 		List<Autor> autores = new ArrayList<>();
 		try {
 			autores = this.repositoryAutor.buscaPorTodosOsAutores();
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new ManipulationException("Erro ao buscar por autores", e);
 		}
 		return autores;
 	}
@@ -40,6 +40,20 @@ public class ServiceAutorImpl implements ServiceAutor {
 		} catch (Exception e) {
 			throw new ManipulationException("Erro ao cadastrar novo Autor", e);
 		}
+	}
+
+	@Override
+	public void editar(Autor autor) {
+		try {
+			this.repositoryAutor.editar(autor);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
+	@Override
+	public void excluir(Autor autor) {
+		this.repositoryAutor.excluir(autor);
 	}
 
 }
