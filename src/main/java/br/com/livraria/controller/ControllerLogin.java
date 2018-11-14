@@ -1,6 +1,7 @@
 package br.com.livraria.controller;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -36,6 +37,11 @@ public class ControllerLogin implements Serializable{
 			buscaPorUsuario = this.serviceEfetuaLogin.efetuaLogin(this.usuario);
 			
 			if(buscaPorUsuario) {
+				/* caso o usuario esteja autenticado, obtem um mapa de sessões e inclui o objeto usuario autenticado anteriormente no mapa */
+				Map<String, Object> sessaoDoUsuario = context.getExternalContext().getSessionMap();
+				sessaoDoUsuario.put("usuarioLogado", this.usuario);
+				
+				
 				return "index?faces-redirect=true";
 			}
 		} catch (NegocioException e) {
@@ -43,7 +49,7 @@ public class ControllerLogin implements Serializable{
 		} catch (ManipulationException e) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
-		return "null";
+		return null;
 	}
 	
 	public String cadastrarAutor() {
@@ -52,6 +58,13 @@ public class ControllerLogin implements Serializable{
 	
 	public String cadastrarLivro() {
 		return "cadastroLivro";
+	}
+	
+	public String deslogar() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		
+		return "login?faces-redirect=true";
 	}
 	
 	public Usuario getUsuario() {

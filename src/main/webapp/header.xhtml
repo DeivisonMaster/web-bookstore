@@ -9,4 +9,7 @@
 <!-- 	height="100" /> -->
 	<h2>Sistema Nacional de Livros</h2>
 
+	<h:form id="formTemplate" prependId="false" rendered="#{usuarioLogado != null}">
+		<h:commandLink value="Logout" action="#{controllerLogin.deslogar}" />
+	</h:form>
 </html>

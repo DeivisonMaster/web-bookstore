@@ -10,7 +10,7 @@
 	<ui:define name="content">
 		<h:form id="formLogin" prependId="false">
 			<h:messages layout="table" warnStyle="color: blue"
-				errorStyle="color: red" />
+				errorStyle="color: red" globalOnly="true" />
 
 			<fieldset>
 				<legend>Login</legend>
@@ -18,7 +18,9 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Email" for="email" />
 					<h:panelGroup>
-						<h:inputText id="email" value="#{controllerLogin.usuario.email}">
+						<h:inputText id="email" value="#{controllerLogin.usuario.email}"
+							required="true"
+							requiredMessage="O campo e-mail é de preenchimento obrigatório">
 							<f:passThroughAttribute name="type" value="email" />
 						</h:inputText>
 						<h:message for="email" id="messageEmail" />
@@ -26,7 +28,8 @@
 
 					<h:outputLabel value="Senha" for="senha" />
 					<h:panelGroup>
-						<h:inputText id="senha" value="#{controllerLogin.usuario.senha}">
+						<h:inputText id="senha" value="#{controllerLogin.usuario.senha}"
+							required="true" requiredMessage="O campo senha é de preenchimento obrigatorio">
 							<f:passThroughAttribute name="type" value="password" />
 						</h:inputText>
 						<h:message for="senha" id="messageSenha" />
