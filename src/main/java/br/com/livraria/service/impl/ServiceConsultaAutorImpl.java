@@ -18,15 +18,8 @@ public class ServiceConsultaAutorImpl implements ServiceConsultaAutor {
 	}
 
 	@Override
-	public List<Autor> buscaPorTodosOsAutores() throws ManipulationException, NegocioException {
-		List<Autor> autores = new ArrayList<>();
-		
-		autores = this.serviceAutor.buscaPorTodosOsAutores();
-		if (autores.isEmpty()) {
-			throw new NegocioException("Não há Autores cadastrados no sistema!");
-		}
-		
-		return autores;
+	public List<Autor> buscaPorTodosOsAutores() {
+		return this.serviceAutor.buscaPorTodosOsAutores();
 	}
 
 }

@@ -1,5 +1,8 @@
 package br.com.livraria.service.impl;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
 import br.com.livraria.model.Autor;
 import br.com.livraria.service.ServiceAutor;
 import br.com.livraria.service.ServiceCadastroAutor;
@@ -14,8 +17,14 @@ public class ServiceCadastroAutorImpl implements ServiceCadastroAutor {
 	}
 
 	@Override
-	public void salvar(Autor autor) throws ManipulationException {
-		this.serviceAutor.salvar(autor);
+	public void salvar(Autor autor) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		try {
+			this.serviceAutor.salvar(autor);
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Autor cadastrado com sucesso!", ""));
+		} catch (ManipulationException e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
 	}
 
 	@Override
@@ -34,10 +43,16 @@ public class ServiceCadastroAutorImpl implements ServiceCadastroAutor {
 	}
 
 	@Override
-	public void excluir(Autor autor) {
+	public void excluir(Autor autor){
+		FacesContext context = FacesContext.getCurrentInstance();
 		Autor buscaAutor = this.buscaPorId(autor.getId());
 		
-		this.serviceAutor.excluir(buscaAutor);
+		try {
+			this.serviceAutor.excluir(buscaAutor);
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Autor excluido com sucesso!", ""));
+		} catch (ManipulationException e) {
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+		}
 	}
 
 }

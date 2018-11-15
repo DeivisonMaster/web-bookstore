@@ -27,11 +27,11 @@ public class ServiceLivroImpl implements ServiceLivro {
 	}
 
 	@Override
-	public void atualizar(Long id) {
+	public void atualizar(Livro livro) throws ManipulationException {
 		try {
-			
+			this.repositoryLivro.atualizar(livro);
 		} catch (Exception e) {
-			// EXCEÇÕES DE PERSISTENCIA
+			throw new ManipulationException("Erro ao atualizar o livro", e);
 		}
 		
 	}

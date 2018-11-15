@@ -8,7 +8,7 @@ public interface RepositoryLivro {
 	
 	void salvar(Livro livro);
 
-	Livro atualizar(Livro livro);
+	void atualizar(Livro livro);
 	
 	Livro buscarPorId(Long id);
 	

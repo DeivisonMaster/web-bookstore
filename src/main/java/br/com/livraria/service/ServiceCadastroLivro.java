@@ -6,9 +6,9 @@ import br.com.livraria.util.NegocioException;
 
 public interface ServiceCadastroLivro {
 	
-	void salvar(Livro livro) throws NegocioException, ManipulationException;
+	void salvar(Livro livro);
 	
-	void atualizar(Long id);
+	void atualizar(Livro livro);
 	
 	void remover(Livro livro) throws ManipulationException;
 	

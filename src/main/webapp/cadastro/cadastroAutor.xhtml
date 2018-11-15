@@ -12,58 +12,96 @@
 
 	<ui:define name="content">
 		<h:form id="formCadastroAutor" prependId="false">
-			<fieldset>
-				<legend>Dados do Autor</legend>
+			<p:messages layout="table" errorStyle="color: red"
+				warnStyle="color: yellow" infoStyle="color: blue" globalOnly="true" />
 
-				<h:messages layout="table" errorStyle="color: red"
-					warnStyle="color: blue" />
 
+			<p:fieldset legend="Dados do Autor">
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Nome" for="nome" />
+					<p:outputLabel value="Nome" for="nome" />
 					<h:panelGroup>
-						<h:inputText id="nome"
-							value="#{controllerCadastroAutor.autor.nome}" />
-					</h:panelGroup>
-					
-					<h:outputLabel value="Email" for="email"/>
-					<h:panelGroup>
-						<h:inputText id="email" value="#{controllerCadastroAutor.autor.email}">
-							<f:passThroughAttribute name="type" value="email"/>
-						</h:inputText>
+						<p:inputText id="nome"
+							value="#{controllerCadastroAutor.autor.nome}" required="true"
+							requiredMessage="O campo nome é de preenchimento obrigatório">
+							<p:ajax event="blur" update="mensagemNome" />
+						</p:inputText>
+						<p:message for="nome" id="mensagemNome" />
 					</h:panelGroup>
 
-					<h:commandButton action="#{controllerCadastroAutor.salvar}"
-						value="Gravar" />
+					<p:outputLabel value="Email" for="email" />
+					<h:panelGroup>
+						<p:inputText id="email"
+							value="#{controllerCadastroAutor.autor.email}" required="true"
+							requiredMessage="O campo email é de preenchimento obrigatório"
+							validatorMessage="E-mail inválido">
+							<f:attribute name="type" value="email" />
+							<f:passThroughAttribute name="placeholder" value="email do autor" />
+							<f:validateRegex pattern=".+@.+" />
+							<p:ajax event="blur" update="mensagemEmail" />
+						</p:inputText>
+						<p:message for="email" id="mensagemEmail" />
+					</h:panelGroup>
+
+					<h:outputText />
+					<p:commandButton action="#{controllerCadastroAutor.salvar}"
+						value="Gravar" process="@form" update="@form :formTabelaAutores">
+					</p:commandButton>
 				</h:panelGrid>
-			</fieldset>
-			
-			<br/>
-			
-			<h:dataTable id="idListaAutores" var="autor" value="#{controllerConsultaAutor.autores}" rendered="#{controllerConsultaAutor.autores != null}">
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Nome" />
-					</f:facet>
-					
-					<h:outputText value="#{autor.nome}" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Editar" />
-					</f:facet>
-					<h:commandLink value="editar" action="#{controllerCadastroAutor.exibirEdicao}">
-						<f:setPropertyActionListener value="#{autor}" target="#{controllerCadastroAutor.autorEdicao}" />
-					</h:commandLink>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Excluir" />
-					</f:facet>
-					<h:commandLink value="excluir" action="#{controllerCadastroAutor.excluir(autor)}"/>
-				</h:column>
-			</h:dataTable>
+			</p:fieldset>
+		</h:form>
+
+		<br />
+
+		<h:form id="formTabelaAutores" prependId="false">
+			<p:fieldset legend="Autores cadastrados no sistema">
+				<p:dataTable id="idTabelaAutores" var="autor"
+					value="#{controllerConsultaAutor.autores}"
+					emptyMessage="Não há Autores cadastrados">
+
+					<p:column style="text-align: center">
+						<f:facet name="header">
+							<h:outputText value="Id" />
+						</f:facet>
+						<h:outputText value="#{autor.id}" />
+					</p:column>
+
+					<p:column style="text-align: center">
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{autor.nome}" />
+					</p:column>
+
+					<p:column style="text-align: center">
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{autor.email}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Editar" />
+						</f:facet>
+						<p:commandLink styleClass="ui-icon ui-icon-pencil"
+							style="float: left; margin-right: 10px;"
+							action="#{controllerCadastroAutor.carregar(autor)}"
+							process="@this" update="@form :formCadastroAutor">
+						</p:commandLink>
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Excluir" />
+						</f:facet>
+						<p:commandLink styleClass="ui-icon ui-icon-trash"
+							style="float: left; margin-right: 10px;"
+							action="#{controllerCadastroAutor.excluir(autor)}"
+							process="@form" update="@all" />
+					</p:column>
+
+				</p:dataTable>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 

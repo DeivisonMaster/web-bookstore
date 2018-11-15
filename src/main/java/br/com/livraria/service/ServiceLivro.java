@@ -9,7 +9,7 @@ public interface ServiceLivro {
 
 	void salvar(Livro livro) throws ManipulationException;
 
-	void atualizar(Long id);
+	void atualizar(Livro livro)  throws ManipulationException;
 
 	List<Livro> buscaPorTodosOsLivros();
 	

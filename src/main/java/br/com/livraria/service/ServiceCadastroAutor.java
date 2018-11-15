@@ -5,7 +5,7 @@ import br.com.livraria.util.ManipulationException;
 
 public interface ServiceCadastroAutor {
 
-	void salvar(Autor autor) throws ManipulationException;
+	void salvar(Autor autor);
 
 	Autor edita(Long id);
 	

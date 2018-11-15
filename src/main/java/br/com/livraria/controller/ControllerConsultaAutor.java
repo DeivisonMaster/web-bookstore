@@ -36,16 +36,7 @@ public class ControllerConsultaAutor implements Serializable{
 	}
 	
 	public List<Autor> getAutores() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		try {
-			this.listaAutores = this.serviceConsultaAutor.buscaPorTodosOsAutores();
-			
-		} catch (ManipulationException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
-		} catch (NegocioException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
-		} 
-		return this.listaAutores;
+		return this.serviceConsultaAutor.buscaPorTodosOsAutores();
 	}
 	
 	public boolean renderizaListaAutores() {

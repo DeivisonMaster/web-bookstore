@@ -24,9 +24,10 @@ public class RepositoryLivroImpl implements RepositoryLivro {
 	}
 
 	@Override
-	public Livro atualizar(Livro livro) {
-		// TODO Auto-generated method stub
-		return null;
+	public void atualizar(Livro livro) {
+		this.entityManager.getTransaction().begin();
+		this.entityManager.merge(livro);
+		this.entityManager.getTransaction().commit();
 	}
 
 	@Override

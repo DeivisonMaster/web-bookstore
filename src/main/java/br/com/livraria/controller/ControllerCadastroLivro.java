@@ -21,9 +21,9 @@ import br.com.livraria.validadores.Validador;
 
 @Named
 @ViewScoped
-public class ControllerCadastroLivro implements Serializable{
+public class ControllerCadastroLivro implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Livro livro;
 	private Livro livroEdicao;
 	private Autor autor;
@@ -35,68 +35,59 @@ public class ControllerCadastroLivro implements Serializable{
 	}
 
 	public void salvar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		try {
-			this.serviceCadastroLivro.salvar(this.livro);
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Livro cadastrado com sucesso!", ""));
-			this.livro = new Livro();
-		} catch(NegocioException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
-		} catch (ManipulationException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
-		}
+		this.serviceCadastroLivro.salvar(this.livro);
+		this.livro = new Livro();
 	}
-	
+
 	public String cadastrarAutor() {
 		return "cadastroAutor?faces-redirect=true";
 	}
-	
-	public String carregaDadosLivro(Livro livro) {
-		this.livroEdicao = livro;
-		return "editarLivro";
+
+	public void carregaDadosLivro(Livro livro) {
+		this.livro = livro;
 	}
-	
+
 	public void editar(Livro livro) {
-		
+
 	}
-	
+
 	public void remover(Livro livro) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			this.serviceCadastroLivro.remover(livro);
-			context.addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_WARN, "Livro removido com sucesso!", ""));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Livro removido com sucesso!", ""));
 		} catch (ManipulationException e) {
-			context.addMessage(null,  new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
 	}
-	
+
 	public Livro getLivro() {
 		return livro;
 	}
-	
+
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	
+
 	public Autor getAutor() {
 		return autor;
 	}
-	
+
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
-	
-	public void deveriaComecarComDigitoUm(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+
+	public void deveriaComecarComDigitoUm(FacesContext context, UIComponent component, Object value)
+			throws ValidatorException {
 		Validador.comecaComDigitoUm(context, component, value);
 	}
-	
+
 	public Livro getLivroEdicao() {
 		return livroEdicao;
 	}
-	
+
 	public void setLivroEdicao(Livro livroEdicao) {
 		this.livroEdicao = livroEdicao;
 	}
-	
-	
+
 }

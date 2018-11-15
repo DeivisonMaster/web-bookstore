@@ -3,42 +3,42 @@
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
 
 	<ui:define name="titulo">Login</ui:define>
 
 	<ui:define name="content">
 		<h:form id="formLogin" prependId="false">
-			<h:messages layout="table" warnStyle="color: blue"
+			<p:messages layout="table" warnStyle="color: blue"
 				errorStyle="color: red" globalOnly="true" />
 
-			<fieldset>
-				<legend>Login</legend>
-
+			<p:fieldset legend="Login">
+			
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Email" for="email" />
+					<p:outputLabel value="Email" for="email" />
 					<h:panelGroup>
-						<h:inputText id="email" value="#{controllerLogin.usuario.email}"
+						<p:inputText id="email" value="#{controllerLogin.usuario.email}"
 							required="true"
 							requiredMessage="O campo e-mail é de preenchimento obrigatório">
 							<f:passThroughAttribute name="type" value="email" />
-						</h:inputText>
-						<h:message for="email" id="messageEmail" />
+						</p:inputText>
+						<p:message for="email" id="messageEmail" />
 					</h:panelGroup>
 
-					<h:outputLabel value="Senha" for="senha" />
+					<p:outputLabel value="Senha" for="senha" />
 					<h:panelGroup>
-						<h:inputText id="senha" value="#{controllerLogin.usuario.senha}"
-							required="true" requiredMessage="O campo senha é de preenchimento obrigatorio">
-							<f:passThroughAttribute name="type" value="password" />
-						</h:inputText>
-						<h:message for="senha" id="messageSenha" />
+						<p:password id="senha" value="#{controllerLogin.usuario.senha}"
+							required="true" feedback="true"
+							requiredMessage="O campo senha é de preenchimento obrigatorio"/>
+						<p:message for="senha" id="messageSenha" />
 					</h:panelGroup>
 
-					<h:commandButton action="#{controllerLogin.efetuaLogin}"
-						value="efetuar login" />
+					<p:commandButton action="#{controllerLogin.efetuaLogin}"
+						value="efetuar login" process="@form" update="@form"/>
 				</h:panelGrid>
-			</fieldset>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 </ui:composition>

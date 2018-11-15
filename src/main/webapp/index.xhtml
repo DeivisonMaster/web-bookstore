@@ -9,10 +9,10 @@
 	<ui:define name="titulo">Sistema de livraria Nacional</ui:define>
 
 	<ui:define name="content">
-		<h:form>
+		<h:form id="formIndex" prependId="false"> 
 			<h2>Página Inicial</h2>
 		
-			<h:commandLink action="#{controllerLogin.cadastrarAutor}" value="cadastro Autor" />
+			<h:commandLink action="cadastroAutor" value="cadastro Autor" />
 			<br />
 			<h:commandLink action="#{controllerLogin.cadastrarLivro}" value="cadastro livro" />
 		</h:form>

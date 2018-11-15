@@ -8,5 +8,5 @@ import br.com.livraria.util.NegocioException;
 
 public interface ServiceConsultaAutor {
 	
-	List<Autor> buscaPorTodosOsAutores() throws ManipulationException, NegocioException;
+	List<Autor> buscaPorTodosOsAutores();
 }
