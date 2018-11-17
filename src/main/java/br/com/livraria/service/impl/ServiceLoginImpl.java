@@ -26,7 +26,7 @@ public class ServiceLoginImpl implements ServiceLogin {
 				return usuarioPesquisado;
 			}
 		} catch (Exception e) {
-			throw new ManipulationException("Erro ao consultar por usuario no sistema", e);
+			throw new ManipulationException("Usuario não cadastrado no sistema", e);
 		}
 		return usuarioPesquisado;
 	}

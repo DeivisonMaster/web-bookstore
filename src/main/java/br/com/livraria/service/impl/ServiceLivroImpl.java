@@ -2,13 +2,17 @@ package br.com.livraria.service.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
+
 import br.com.livraria.model.Livro;
 import br.com.livraria.repository.RepositoryLivro;
 import br.com.livraria.repository.impl.RepositoryLivroImpl;
 import br.com.livraria.service.ServiceLivro;
 import br.com.livraria.util.ManipulationException;
 
+@Dependent
 public class ServiceLivroImpl implements ServiceLivro {
+	private static final long serialVersionUID = 1L;
 	
 	private RepositoryLivro repositoryLivro;
 	

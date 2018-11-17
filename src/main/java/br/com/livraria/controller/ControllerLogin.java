@@ -53,18 +53,23 @@ public class ControllerLogin implements Serializable{
 	}
 	
 	public String cadastrarAutor() {
-		return "cadastroAutor?faces-redirect=true";
+		return "/cadastro/cadastroAutor.xhtml?faces-redirect=true";
+	}
+	
+	public String consultaVendas() {
+		return "/cadastro/vendas.xhtml?faces-redirect=true";
 	}
 	
 	public String cadastrarLivro() {
-		return "cadastroLivro";
+		return "/cadastro/cadastroLivro.xhtml?faces-redirect=true";
 	}
 	
 	public String deslogar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");
-		
-		return "login?faces-redirect=true";
+		ControllerTema tema = new ControllerTema();
+		tema.setTema("afterdark");
+		return "/login.xhtml?faces-redirect=true";
 	}
 	
 	public Usuario getUsuario() {

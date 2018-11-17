@@ -2,14 +2,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 
 <!-- 	<h:graphicImage library="imagens" name="Lineage_OS_Logo.png" width="150" -->
 <!-- 	height="100" /> -->
-	<h2>Sistema Nacional de Livros</h2>
 
-	<h:form id="formTemplate" prependId="false" rendered="#{usuarioLogado != null}">
-		<h:commandLink value="Logout" action="#{controllerLogin.deslogar}" />
+	<h:form id="formTemplate" prependId="false"
+		rendered="#{usuarioLogado != null}">
+		
+		<p:themeSwitcher id="basic" style="width: 165px" value="#{controllerTema.tema}">
+			<f:selectItem itemLabel="escolha o tema" itemValue=""/>
+			<f:selectItems value="#{controllerTema.temas}" var="tema" itemLabel="#{tema}" itemValue="#{tema}"/>
+			<f:ajax/>
+		</p:themeSwitcher>
+		
+		<p:growl id="mensagens" showDetail="false" autoUpdate="true" sticky="true" life="3000"/>
+		
+		<h2>Sistema Nacional de Livros</h2>
+		
+		<p:menuButton value="Menu">
+			<p:menuitem value="livros" action="#{controllerLogin.cadastrarLivro()}" icon="ui-icon-pencil"/>
+			<p:menuitem value="autores" action="#{controllerLogin.cadastrarAutor()}" icon="ui-icon-pencil"/>
+			<p:menuitem value="vendas" action="#{controllerLogin.consultaVendas()}" icon="ui-icon-image"/>
+			<p:menuitem value="logout" action="#{controllerLogin.deslogar()}" icon="ui-icon-signout"/>
+		</p:menuButton>
 	</h:form>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

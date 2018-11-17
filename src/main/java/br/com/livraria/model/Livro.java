@@ -22,7 +22,7 @@ public class Livro implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable = false, length = 30)
@@ -38,7 +38,7 @@ public class Livro implements Serializable{
 	@Column(name = "data_lancamento")
 	private Date dataLancamento;
 	
-	@OneToOne(optional = false)
+	@OneToOne
 	private Autor autor;
 
 	

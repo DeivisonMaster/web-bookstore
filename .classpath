@@ -38,5 +38,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/Eclipse/projetos/livraria-web/src/main/webapp/WEB-INF/lib/all-themes-1.0.10.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

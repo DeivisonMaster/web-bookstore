@@ -1,20 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/_template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Cadastro de Livros</title>
-</h:head>
-<h:body>
+	<ui:define name="titulo">Sistema de livraria Nacional</ui:define>
 
-	<h:form>
-		<h:commandLink action="cadastro/cadastroAutor" value="cadastro Autor" />
-		<br/>
-		<h:commandLink action="cadastro/cadastroLivro" value="cadastro livro" />
-	</h:form>
-
-</h:body>
-</html>
+	<ui:define name="content">
+		<h:form id="formIndex" prependId="false"> 
+			<h2>Página Inicial</h2>
+		
+		</h:form>
+	</ui:define>
+</ui:composition>

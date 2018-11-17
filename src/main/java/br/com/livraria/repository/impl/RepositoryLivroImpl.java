@@ -2,14 +2,17 @@ package br.com.livraria.repository.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 
 import br.com.livraria.model.Livro;
 import br.com.livraria.repository.RepositoryLivro;
 import br.com.livraria.util.JPAUtil;
 
+@Dependent
 public class RepositoryLivroImpl implements RepositoryLivro {
-
+	private static final long serialVersionUID = 1L;
+	
 	private EntityManager entityManager;
 
 	public RepositoryLivroImpl() {

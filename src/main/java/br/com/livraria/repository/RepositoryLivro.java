@@ -1,10 +1,11 @@
 package br.com.livraria.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.livraria.model.Livro;
 
-public interface RepositoryLivro {
+public interface RepositoryLivro extends Serializable {
 	
 	void salvar(Livro livro);
 

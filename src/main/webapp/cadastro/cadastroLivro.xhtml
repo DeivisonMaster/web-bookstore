@@ -39,14 +39,14 @@
 
 					<p:outputLabel value="Autor" />
 					<h:panelGroup>
-						<h:selectOneMenu value="#{controllerCadastroLivro.livro.autor}"
+						<p:selectOneMenu value="#{controllerCadastroLivro.livro.autor}"
 							label="Autor"
-							rendered="#{controllerConsultaAutor.renderizaListaAutores()}">
+							rendered="#{controllerConsultaAutor.renderizaListaAutores()}" required="true" requiredMessage="O autor deve ser informado">
 							<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
 							<f:selectItems var="autor"
 								value="#{controllerConsultaAutor.autores}"
 								itemLabel="#{autor.nome}" itemValue="#{autor}" />
-						</h:selectOneMenu>
+						</p:selectOneMenu>
 
 						<!-- 					<p:commandLink action="cadastroAutor" value="Cadastrar Autor" -->
 						<!-- 						rendered="#{not controllerConsultaAutor.renderizaListaAutores()}" -->
@@ -94,64 +94,46 @@
 			<p:fieldset legend="Livros cadastrados no sistema">
 				<p:dataTable id="idTabelaLivros" var="livro"
 					value="#{controllerConsultaLivro.listaLivros}"
-					emptyMessage="Não há livros cadastrados">
-					
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Id" />
-						</f:facet>
-						<h:outputText value="#{livro.id}" />
+					emptyMessage="Não há livros cadastrados" paginator="true"
+					rowsPerPageTemplate="5,10,15" paginatorPosition="bottom">
+
+					<f:facet name="header">
+						<h:outputText value="Livros" />
+					</f:facet>
+					<p:column style="text-align: center" headerText="Id"
+						sortBy="#{livro.id}">
+						<h:outputText value="#{livro.id}"/>
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Titulo" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="Titulo"
+						sortBy="#{livro.titulo}" filterBy="#{livro.titulo}" filterMatchMode="startsWith">
 						<h:outputText value="#{livro.titulo}" />
 					</p:column>
 
-					<p:column>
-						<f:facet name="header" style="text-align: center">
-							<h:outputText value="Isbn" />
-						</f:facet>
+					<p:column headerText="ISBN" sortBy="#{livro.isbn}">
 						<h:outputText value="#{livro.isbn}" />
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header" style="text-align: center">
-							<h:outputText value="Autor" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="Autor">
 						<h:outputText value="#{livro.autor.nome}" />
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Preço" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="Preço">
 						<h:outputText value="#{livro.preco}" />
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Data Lançamento" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="Data Lançamento">
 						<h:outputText value="#{livro.dataLancamento}" />
 					</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Editar" />
-						</f:facet>
+					<p:column headerText="Editar">
 						<p:commandLink styleClass="ui-icon ui-icon-pencil"
 							style="float: left; margin-right: 10px;"
 							action="#{controllerCadastroLivro.carregaDadosLivro(livro)}"
-							process="@this" update="@form :formCadastroLivro"/>
+							process="@this" update="@form :formCadastroLivro" />
 					</p:column>
 
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Remover" />
-						</f:facet>
+					<p:column headerText="Remover">
 						<p:commandLink styleClass="ui-icon ui-icon-trash"
 							style="float: left; margin-right: 10px;"
 							action="#{controllerCadastroLivro.remover(livro)}"

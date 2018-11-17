@@ -20,8 +20,13 @@ public class ServiceCadastroAutorImpl implements ServiceCadastroAutor {
 	public void salvar(Autor autor) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		try {
-			this.serviceAutor.salvar(autor);
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Autor cadastrado com sucesso!", ""));
+			if(autor.getId() == null) {
+				this.serviceAutor.salvar(autor);
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Autor cadastrado com sucesso!", ""));
+			}else {
+				this.editar(autor);
+				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados atualizados com sucesso!", ""));
+			}
 		} catch (ManipulationException e) {
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
