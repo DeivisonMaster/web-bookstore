@@ -100,12 +100,12 @@
 					<f:facet name="header">
 						<h:outputText value="Livros" />
 					</f:facet>
-					<p:column style="text-align: center" headerText="Id"
+					<p:column style="width: 3%; text-align: center;" headerText="Id"
 						sortBy="#{livro.id}">
 						<h:outputText value="#{livro.id}"/>
 					</p:column>
 
-					<p:column style="text-align: center" headerText="Titulo"
+					<p:column style="text-align: center;" headerText="Titulo"
 						sortBy="#{livro.titulo}" filterBy="#{livro.titulo}" filterMatchMode="startsWith">
 						<h:outputText value="#{livro.titulo}" />
 					</p:column>
@@ -126,14 +126,14 @@
 						<h:outputText value="#{livro.dataLancamento}" />
 					</p:column>
 
-					<p:column headerText="Editar">
+					<p:column headerText="Editar" style="width: 5%; text-align: center;">
 						<p:commandLink styleClass="ui-icon ui-icon-pencil"
 							style="float: left; margin-right: 10px;"
 							action="#{controllerCadastroLivro.carregaDadosLivro(livro)}"
 							process="@this" update="@form :formCadastroLivro" />
 					</p:column>
 
-					<p:column headerText="Remover">
+					<p:column headerText="Remover" style="width: 5%; text-align: center;">
 						<p:commandLink styleClass="ui-icon ui-icon-trash"
 							style="float: left; margin-right: 10px;"
 							action="#{controllerCadastroLivro.remover(livro)}"

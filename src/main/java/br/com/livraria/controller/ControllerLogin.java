@@ -37,11 +37,7 @@ public class ControllerLogin implements Serializable{
 			buscaPorUsuario = this.serviceEfetuaLogin.efetuaLogin(this.usuario);
 			
 			if(buscaPorUsuario) {
-				/* caso o usuario esteja autenticado, obtem um mapa de sessões e inclui o objeto usuario autenticado anteriormente no mapa */
-				Map<String, Object> sessaoDoUsuario = context.getExternalContext().getSessionMap();
-				sessaoDoUsuario.put("usuarioLogado", this.usuario);
-				
-				
+				tornaUsuarioAutenticadoComoUsuarioLogado(context);
 				return "index?faces-redirect=true";
 			}
 		} catch (NegocioException e) {
@@ -50,6 +46,12 @@ public class ControllerLogin implements Serializable{
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
 		return null;
+	}
+	
+	private void tornaUsuarioAutenticadoComoUsuarioLogado(FacesContext context) {
+		/* caso o usuario esteja autenticado, obtem um mapa de sessões e inclui o objeto usuario autenticado anteriormente no mapa */
+		Map<String, Object> sessaoDoUsuario = context.getExternalContext().getSessionMap();
+		sessaoDoUsuario.put("usuarioLogado", this.usuario);
 	}
 	
 	public String cadastrarAutor() {
@@ -67,8 +69,10 @@ public class ControllerLogin implements Serializable{
 	public String deslogar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		
 		ControllerTema tema = new ControllerTema();
 		tema.setTema("afterdark");
+		
 		return "/login.xhtml?faces-redirect=true";
 	}
 	

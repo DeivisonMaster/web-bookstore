@@ -15,7 +15,7 @@ public class ControllerTema implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private List<String> temas;
-	private String tema = "bluesky";
+	private String tema = "afterdark";
 	
 	public ControllerTema() {
 		this.temas = new ArrayList<>();

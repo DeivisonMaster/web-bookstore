@@ -33,7 +33,7 @@ public class ControllerVenda implements Serializable{
 		this.livros = new ArrayList<>();
 	}
 	
-	public List<Venda> getVendas() {
+	public List<Venda> getVendas(Long dados) {
 		this.livros = serviceConsultaLivro.buscaPorTodosOsLivros();
 		Random random = new Random(1234);
 
@@ -50,15 +50,26 @@ public class ControllerVenda implements Serializable{
 		BarChartModel model = new BarChartModel();
 		model.setAnimate(true);
 		
-		ChartSeries vendaSeries = new ChartSeries();
-		vendaSeries.setLabel("Vendas 2018");
+		ChartSeries vendaSeries2018 = new ChartSeries();
+		vendaSeries2018.setLabel("Vendas 2018");
 		
-		List<Venda> vendas = getVendas();
+		List<Venda> vendas = getVendas(1234L);
 		for(Venda venda : vendas) {
-			vendaSeries.set(venda.getLivro().getTitulo(), venda.getQuantidade());
+			vendaSeries2018.set(venda.getLivro().getTitulo(), venda.getQuantidade());
 		}
-		model.addSeries(vendaSeries);
 		
+		/* 2017 */
+		ChartSeries vendasSeries2017 = new ChartSeries();
+		vendasSeries2017.setLabel("Vendas 2017");
+		
+		List<Venda> vendas2017 = getVendas(4911L);
+		for(Venda venda : vendas2017) {
+			vendasSeries2017.set(venda.getLivro().getTitulo(), venda.getQuantidade());
+		}
+		
+		
+		model.addSeries(vendasSeries2017);
+		model.addSeries(vendaSeries2018);
 		return model;
 	}
 	

@@ -58,46 +58,51 @@
 					value="#{controllerConsultaAutor.autores}"
 					emptyMessage="Não há Autores cadastrados">
 
-					<p:column style="text-align: center">
+					<f:facet name="header">
+						<h:outputText value="Autores" />
+					</f:facet>
+
+					<p:column style="width: 5%; text-align: center;">
 						<f:facet name="header">
 							<h:outputText value="Id" />
 						</f:facet>
 						<h:outputText value="#{autor.id}" />
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Nome" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="Nome">
 						<h:outputText value="#{autor.nome}" />
 					</p:column>
 
-					<p:column style="text-align: center">
-						<f:facet name="header">
-							<h:outputText value="Nome" />
-						</f:facet>
+					<p:column style="text-align: center" headerText="E-mail">
 						<h:outputText value="#{autor.email}" />
 					</p:column>
 
-					<p:column>
+					<p:column style="width: 5%; text-align: center;">
 						<f:facet name="header">
 							<h:outputText value="Editar" />
 						</f:facet>
 						<p:commandLink styleClass="ui-icon ui-icon-pencil"
 							style="float: left; margin-right: 10px;"
-							action="#{controllerCadastroAutor.carregar(autor)}"
-							process="@this" update="@form :formCadastroAutor">
+							action="#{controllerCadastroAutor.carregar(autor)}" process="@this"
+							update="@form :formCadastroAutor">
 						</p:commandLink>
 					</p:column>
 
-					<p:column>
+					<p:column rendered="false">
+						<p:commandLink action="#{controllerCadastroAutor.editar}" value="editar">
+							<f:setPropertyActionListener value="#{autor}"
+								target="#{controllerCadastroAutor.autorEdicao}" />
+						</p:commandLink>
+					</p:column>
+
+					<p:column style="width: 5%; text-align: center;">
 						<f:facet name="header">
 							<h:outputText value="Excluir" />
 						</f:facet>
 						<p:commandLink styleClass="ui-icon ui-icon-trash"
 							style="float: left; margin-right: 10px;"
 							action="#{controllerCadastroAutor.excluir(autor)}"
-							process="@form" update="@all" />
+							process="@form" update="@form :formCadastroAutor" />
 					</p:column>
 
 				</p:dataTable>

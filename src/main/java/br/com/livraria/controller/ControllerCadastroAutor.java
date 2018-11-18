@@ -2,6 +2,7 @@ package br.com.livraria.controller;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -13,15 +14,17 @@ import br.com.livraria.service.ServiceCadastroAutor;
 import br.com.livraria.service.impl.ServiceCadastroAutorImpl;
 
 @Named
-@ViewScoped
+@ConversationScoped
 @URLMappings(mappings = {
 		@URLMapping(id = "editarAutor", pattern = "/cadastro/edicao", viewId = "/cadastro/editaAutor.xhtml") })
 public class ControllerCadastroAutor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	/* não está carregando os dados no encaminhamento da página */
 	private static final String EDITAR = "pretty:editarAutor";
 
 	private Autor autor;
+	private Autor autorEdicao;
 	private ServiceCadastroAutor serviceCadastroAutor;
 
 	public ControllerCadastroAutor() {
@@ -39,8 +42,8 @@ public class ControllerCadastroAutor implements Serializable {
 	}
 
 	public String editar() {
-		this.serviceCadastroAutor.editar(this.autor);
-		return "cadastroAutor";
+		this.autor = this.serviceCadastroAutor.edita(this.autorEdicao.getId());
+		return "editaAutor";
 	}
 
 	public void excluir(Autor autor) {
@@ -54,5 +57,12 @@ public class ControllerCadastroAutor implements Serializable {
 	public void setAutor(Autor autor) {
 		this.autor = autor;
 	}
-
+	
+	public Autor getAutorEdicao() {
+		return autorEdicao;
+	}
+	
+	public void setAutorEdicao(Autor autorEdicao) {
+		this.autorEdicao = autorEdicao;
+	}
 }
