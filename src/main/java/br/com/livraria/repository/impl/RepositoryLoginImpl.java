@@ -1,6 +1,7 @@
 package br.com.livraria.repository.impl;
 
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -10,7 +11,6 @@ import br.com.livraria.util.JPAUtil;
 
 @Dependent
 public class RepositoryLoginImpl implements RepositoryLogin {
-
 	private static final long serialVersionUID = 1L;
 	
 	private EntityManager entityManager;

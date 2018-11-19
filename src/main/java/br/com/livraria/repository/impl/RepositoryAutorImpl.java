@@ -2,20 +2,26 @@ package br.com.livraria.repository.impl;
 
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.livraria.model.Autor;
 import br.com.livraria.repository.RepositoryAutor;
 import br.com.livraria.util.JPAUtil;
 
+@Dependent
 public class RepositoryAutorImpl implements RepositoryAutor{
+	private static final long serialVersionUID = 1L;
 	
 	private EntityManager entityManager;
 	
 	public RepositoryAutorImpl() {
 		this.entityManager = JPAUtil.getEntityManager();
 	}
+	
 	
 	@Override
 	public void salvar(Autor autor) {

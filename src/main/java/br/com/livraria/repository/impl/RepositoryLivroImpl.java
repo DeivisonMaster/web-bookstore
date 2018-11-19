@@ -3,6 +3,7 @@ package br.com.livraria.repository.impl;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.livraria.model.Livro;

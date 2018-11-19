@@ -12,15 +12,16 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 import br.com.livraria.model.Autor;
 import br.com.livraria.service.ServiceCadastroAutor;
 import br.com.livraria.service.impl.ServiceCadastroAutorImpl;
+import br.com.livraria.tx.Transacional;
 
 @Named
-@ConversationScoped
+@ViewScoped
 @URLMappings(mappings = {
 		@URLMapping(id = "editarAutor", pattern = "/cadastro/edicao", viewId = "/cadastro/editaAutor.xhtml") })
 public class ControllerCadastroAutor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/* não está carregando os dados no encaminhamento da página */
+	/* não está carregando os dados no encaminhamento da página - Usar conversationScoped */
 	private static final String EDITAR = "pretty:editarAutor";
 
 	private Autor autor;

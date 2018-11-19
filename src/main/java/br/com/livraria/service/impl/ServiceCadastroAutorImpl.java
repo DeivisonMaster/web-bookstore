@@ -9,7 +9,8 @@ import br.com.livraria.service.ServiceCadastroAutor;
 import br.com.livraria.util.ManipulationException;
 
 public class ServiceCadastroAutorImpl implements ServiceCadastroAutor {
-
+	private static final long serialVersionUID = 1L;
+	
 	private ServiceAutor serviceAutor;
 
 	public ServiceCadastroAutorImpl() {

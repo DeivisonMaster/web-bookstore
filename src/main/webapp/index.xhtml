@@ -9,9 +9,11 @@
 	<ui:define name="titulo">Sistema de livraria Nacional</ui:define>
 
 	<ui:define name="content">
-		<h:form id="formIndex" prependId="false"> 
+		<h:form id="formIndex" prependId="false">
 			<h2>Página Inicial</h2>
-		
+
+			<p:chart type="bar" model="#{controllerVenda.vendasModel}"
+				style="height: 300px;" />
 		</h:form>
 	</ui:define>
 </ui:composition>

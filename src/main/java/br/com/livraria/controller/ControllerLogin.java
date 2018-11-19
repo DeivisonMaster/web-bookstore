@@ -66,6 +66,10 @@ public class ControllerLogin implements Serializable{
 		return "/cadastro/cadastroLivro.xhtml?faces-redirect=true";
 	}
 	
+	public String index() {
+		return "/index.xhtml?faces-redirect=true";
+	}
+	
 	public String deslogar() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.getExternalContext().getSessionMap().remove("usuarioLogado");

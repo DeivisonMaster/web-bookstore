@@ -10,6 +10,7 @@ import br.com.livraria.service.ServiceAutor;
 import br.com.livraria.util.ManipulationException;
 
 public class ServiceAutorImpl implements ServiceAutor {
+	private static final long serialVersionUID = 1L;
 	
 	private RepositoryAutor repositoryAutor;
 	

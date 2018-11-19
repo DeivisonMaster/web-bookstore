@@ -1,9 +1,11 @@
 package br.com.livraria.service;
 
+import java.io.Serializable;
+
 import br.com.livraria.model.Autor;
 import br.com.livraria.util.ManipulationException;
 
-public interface ServiceCadastroAutor {
+public interface ServiceCadastroAutor extends Serializable{
 
 	void salvar(Autor autor);
 

@@ -1,10 +1,11 @@
 package br.com.livraria.repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.livraria.model.Autor;
 
-public interface RepositoryAutor {
+public interface RepositoryAutor extends Serializable{
 	
 	List<Autor> buscaPorTodosOsAutores();
 
