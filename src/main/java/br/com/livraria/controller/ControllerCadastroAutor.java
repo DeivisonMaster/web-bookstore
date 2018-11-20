@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
@@ -26,11 +27,12 @@ public class ControllerCadastroAutor implements Serializable {
 
 	private Autor autor;
 	private Autor autorEdicao;
+	
+	@Inject
 	private ServiceCadastroAutor serviceCadastroAutor;
 
 	public ControllerCadastroAutor() {
 		this.autor = new Autor();
-		this.serviceCadastroAutor = new ServiceCadastroAutorImpl();
 	}
 
 	public void salvar() {

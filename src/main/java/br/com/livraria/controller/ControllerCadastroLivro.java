@@ -9,6 +9,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.livraria.model.Autor;
@@ -27,11 +28,12 @@ public class ControllerCadastroLivro implements Serializable {
 	private Livro livro;
 	private Livro livroEdicao;
 	private Autor autor;
+	
+	@Inject
 	private ServiceCadastroLivro serviceCadastroLivro;
 
 	public ControllerCadastroLivro() {
 		this.livro = new Livro();
-		this.serviceCadastroLivro = new ServiceCadastroLivroImpl();
 	}
 
 	public void salvar() {

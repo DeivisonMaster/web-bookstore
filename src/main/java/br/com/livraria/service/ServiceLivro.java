@@ -12,7 +12,7 @@ public interface ServiceLivro extends Serializable {
 
 	void atualizar(Livro livro)  throws ManipulationException;
 
-	List<Livro> buscaPorTodosOsLivros();
+	List<Livro> buscaPorTodosOsLivros() throws ManipulationException;
 	
 	Livro buscarPorId(Long id);
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.livraria.model.Autor;
@@ -19,11 +20,12 @@ public class ControllerConsultaAutor implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private List<Autor> listaAutores;
+	
+	@Inject
 	private ServiceConsultaAutor serviceConsultaAutor;
 	
 	public ControllerConsultaAutor() {
 		this.listaAutores = new ArrayList<>();
-		this.serviceConsultaAutor = new ServiceConsultaAutorImpl();
 	}
 	
 	/* by viewAction */

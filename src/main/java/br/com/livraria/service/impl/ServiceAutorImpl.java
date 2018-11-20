@@ -3,12 +3,16 @@ package br.com.livraria.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+
 import br.com.livraria.model.Autor;
 import br.com.livraria.repository.RepositoryAutor;
 import br.com.livraria.repository.impl.RepositoryAutorImpl;
 import br.com.livraria.service.ServiceAutor;
 import br.com.livraria.util.ManipulationException;
 
+@Dependent
 public class ServiceAutorImpl implements ServiceAutor {
 	private static final long serialVersionUID = 1L;
 	
@@ -17,14 +21,15 @@ public class ServiceAutorImpl implements ServiceAutor {
 	public ServiceAutorImpl() {
 		this.repositoryAutor = new RepositoryAutorImpl();
 	}
-
+	
+	
 	@Override
-	public List<Autor> buscaPorTodosOsAutores(){
+	public List<Autor> buscaPorTodosOsAutores() throws ManipulationException{
 		List<Autor> autores = new ArrayList<>();
 		try {
 			autores = this.repositoryAutor.buscaPorTodosOsAutores();
 		} catch (Exception e) {
-			// 
+			throw new ManipulationException("Erro ao lista autores", e);
 		}
 		return autores;
 	}

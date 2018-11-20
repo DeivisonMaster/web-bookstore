@@ -8,7 +8,7 @@ import br.com.livraria.util.ManipulationException;
 
 public interface ServiceAutor extends Serializable{
 	
-	List<Autor> buscaPorTodosOsAutores();
+	List<Autor> buscaPorTodosOsAutores() throws ManipulationException;
 	
 	Autor buscaPorId(Long id);
 

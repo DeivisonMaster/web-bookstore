@@ -3,6 +3,7 @@ package br.com.livraria.service.impl;
 import java.util.List;
 
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
 import br.com.livraria.model.Livro;
 import br.com.livraria.repository.RepositoryLivro;
@@ -14,12 +15,11 @@ import br.com.livraria.util.ManipulationException;
 public class ServiceLivroImpl implements ServiceLivro {
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private RepositoryLivro repositoryLivro;
 	
-	public ServiceLivroImpl() {
-		this.repositoryLivro = new RepositoryLivroImpl();
-	}
 
+	
 	@Override
 	public void salvar(Livro livro) throws ManipulationException {
 		try {
@@ -41,13 +41,12 @@ public class ServiceLivroImpl implements ServiceLivro {
 	}
 
 	@Override
-	public List<Livro> buscaPorTodosOsLivros() {
+	public List<Livro> buscaPorTodosOsLivros() throws ManipulationException {
 		try {
 			return this.repositoryLivro.buscarPorTodosOsLivros();
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw new ManipulationException("Erro ao listar todos os livros", e);
 		}
-		return null;
 	}
 
 	@Override
