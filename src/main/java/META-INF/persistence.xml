@@ -9,6 +9,7 @@
 		<class>br.com.livraria.model.Livro</class>
 		<class>br.com.livraria.model.Autor</class>
 		<class>br.com.livraria.model.Usuario</class>
+		<class>br.com.livraria.model.Venda</class>
 		<properties>
 			<property name="hibernate.connection.username"
 				value="master" />
