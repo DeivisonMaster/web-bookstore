@@ -25,25 +25,27 @@ public class ControllerLogin implements Serializable{
 	@Inject
 	private ServiceEfetuaLogin serviceEfetuaLogin;
 	
+	@Inject
+	private FacesContext context;
+	
 	public ControllerLogin() {
 		this.usuario = new Usuario();
 	}
 	
 	
 	public String efetuaLogin() {
-		FacesContext context = FacesContext.getCurrentInstance();
 		try {
 			boolean buscaPorUsuario = false;
 			buscaPorUsuario = this.serviceEfetuaLogin.efetuaLogin(this.usuario);
 			
 			if(buscaPorUsuario) {
-				tornaUsuarioAutenticadoComoUsuarioLogado(context);
+				tornaUsuarioAutenticadoComoUsuarioLogado(this.context);
 				return "index?faces-redirect=true";
 			}
 		} catch (NegocioException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), ""));
+			this.context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, e.getMessage(), ""));
 		} catch (ManipulationException e) {
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
+			this.context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
 		return null;
 	}
@@ -71,8 +73,7 @@ public class ControllerLogin implements Serializable{
 	}
 	
 	public String deslogar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		this.context.getExternalContext().getSessionMap().remove("usuarioLogado");
 		
 		ControllerTema tema = new ControllerTema();
 		tema.setTema("afterdark");
