@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-@ApplicationScoped
+//@ApplicationScoped
 public class JPAUtil {
 	private static EntityManagerFactory entityManagerFactory;
 	
@@ -16,13 +16,13 @@ public class JPAUtil {
 		entityManagerFactory = Persistence.createEntityManagerFactory("livraria_web");
 	}
 	
-	@Produces
-	@RequestScoped
+	//@Produces
+	//@RequestScoped
 	public static EntityManager getEntityManager() {
 		return entityManagerFactory.createEntityManager();
 	}
 	
-	public void close(@Disposes EntityManager em) {
-		em.close();
-	}
+//	public void close(@Disposes EntityManager em) {
+//		em.close();
+//	}
 }
