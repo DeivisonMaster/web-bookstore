@@ -11,11 +11,8 @@
 
 	<ui:define name="content">
 		<h:form id="formLogin" prependId="false">
-<!-- 			<p:growl id="mensagens" showDetail="true" autoUpdate="true" -->
-<!-- 				sticky="true" showSummary="false"/> -->
-
-			<p:messages layout="table" warnStyle="color: blue"
-				errorStyle="color: red" globalOnly="true" />
+			<p:growl id="msgLogin" showDetail="true" autoUpdate="true"
+				sticky="true" showSummary="false"/>
 
 			<p:fieldset legend="Login">
 
@@ -27,7 +24,7 @@
 							requiredMessage="O campo e-mail é de preenchimento obrigatório">
 							<f:passThroughAttribute name="type" value="email" />
 						</p:inputText>
-						<p:message for="email" id="messageEmail" showDetail="true"/>
+<!-- 						<p:message for="email" id="messageEmail" showDetail="true"/> -->
 					</h:panelGroup>
 
 					<p:outputLabel value="Senha" for="senha" />
@@ -38,7 +35,7 @@
 							validatorMessage="O campo senha deve conter no minimo 3 caracteres">
 								<f:validateLength minimum="3"/>
 							</p:password>
-						<p:message for="senha" id="messageSenha" />
+<!-- 						<p:message for="senha" id="messageSenha" /> -->
 					</h:panelGroup>
 
 					<h:outputText/>

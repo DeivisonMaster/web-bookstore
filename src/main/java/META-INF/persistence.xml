@@ -11,14 +11,15 @@
 		<class>br.com.livraria.model.Usuario</class>
 		<class>br.com.livraria.model.Venda</class>
 		<properties>
+			<property name="hibernate.connection.driver_class"
+				value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:mysql://localhost:3306/livraria" />
 			<property name="hibernate.connection.username"
 				value="master" />
 			<property name="hibernate.connection.password"
 				value="matos132739" />
-			<property name="hibernate.connection.url"
-				value="jdbc:mysql://localhost:3306/livraria" />
-			<property name="hibernate.connection.driver_class"
-				value="com.mysql.jdbc.Driver" />
+
 
 			<property name="hibernate.cache.provider_class"
 				value="org.hibernate.cache.NoCacheProvider" />

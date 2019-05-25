@@ -21,7 +21,6 @@ public class ServiceCadastroLivroImpl implements ServiceCadastroLivro{
 	@Inject
 	private FacesContext context;
 	
-
 	
 	@Override
 	public void salvar(Livro livro){

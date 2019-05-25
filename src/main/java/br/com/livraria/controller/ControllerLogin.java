@@ -40,6 +40,7 @@ public class ControllerLogin implements Serializable{
 			
 			if(buscaPorUsuario) {
 				tornaUsuarioAutenticadoComoUsuarioLogado(this.context);
+				this.context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Olá, Seja bem-vindo!", ""));
 				return "index?faces-redirect=true";
 			}
 		} catch (NegocioException e) {

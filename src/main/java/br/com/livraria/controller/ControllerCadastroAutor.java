@@ -46,7 +46,7 @@ public class ControllerCadastroAutor implements Serializable {
 
 	public String editar() {
 		this.autor = this.serviceCadastroAutor.edita(this.autorEdicao.getId());
-		return "editaAutor";
+		return EDITAR;
 	}
 
 	public void excluir(Autor autor) {

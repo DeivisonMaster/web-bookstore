@@ -13,11 +13,9 @@ import br.com.livraria.util.JPAUtil;
 public class RepositoryLoginImpl implements RepositoryLogin {
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private EntityManager entityManager;
 
-	public RepositoryLoginImpl() {
-		this.entityManager = JPAUtil.getEntityManager();
-	}
 
 	@Override
 	public Usuario efetuaLogin(Usuario usuario) {

@@ -14,11 +14,8 @@ import br.com.livraria.util.JPAUtil;
 public class RepositoryLivroImpl implements RepositoryLivro {
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private EntityManager entityManager;
-
-	public RepositoryLivroImpl() {
-		this.entityManager = JPAUtil.getEntityManager();
-	}
 
 	@Override
 	public void salvar(Livro livro) {

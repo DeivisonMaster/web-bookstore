@@ -5,7 +5,6 @@ import java.util.List;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.livraria.model.Autor;
@@ -16,18 +15,13 @@ import br.com.livraria.util.JPAUtil;
 public class RepositoryAutorImpl implements RepositoryAutor{
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private EntityManager entityManager;
-	
-	public RepositoryAutorImpl() {
-		this.entityManager = JPAUtil.getEntityManager();
-	}
 	
 	
 	@Override
 	public void salvar(Autor autor) {
-		this.entityManager.getTransaction().begin();
 		this.entityManager.persist(autor);
-		this.entityManager.getTransaction().commit();
 	}
 
 	@Override
@@ -45,16 +39,12 @@ public class RepositoryAutorImpl implements RepositoryAutor{
 	
 	@Override
 	public void editar(Autor autor) {
-		this.entityManager.getTransaction().begin();
 		this.entityManager.merge(autor);
-		this.entityManager.getTransaction().commit();
 	}
 
 	@Override
 	public void excluir(Autor autor) {
-		this.entityManager.getTransaction().begin();
 		this.entityManager.remove(autor);
-		this.entityManager.getTransaction().commit();
 	}
 
 }

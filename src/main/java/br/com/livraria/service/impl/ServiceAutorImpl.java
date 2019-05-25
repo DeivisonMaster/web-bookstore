@@ -16,7 +16,6 @@ import br.com.livraria.util.ManipulationException;
 public class ServiceAutorImpl implements ServiceAutor {
 	private static final long serialVersionUID = 1L;
 	
-	/* null pointer exception com @Inject */
 	private RepositoryAutor repositoryAutor;
 	
 	public ServiceAutorImpl() {
@@ -30,7 +29,7 @@ public class ServiceAutorImpl implements ServiceAutor {
 		try {
 			autores = this.repositoryAutor.buscaPorTodosOsAutores();
 		} catch (Exception e) {
-			throw new ManipulationException("Erro ao lista autores", e);
+			throw new ManipulationException("Erro ao listar autores", e);
 		}
 		return autores;
 	}

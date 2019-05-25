@@ -15,11 +15,9 @@ import br.com.livraria.util.JPAUtil;
 public class GerenciadorDeTransacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@Inject
 	private EntityManager entityManager;
 	
-	public GerenciadorDeTransacao() {
-		this.entityManager = JPAUtil.getEntityManager();
-	}
 	
 	@AroundInvoke
 	public Object executaTx(InvocationContext context) throws Exception {
