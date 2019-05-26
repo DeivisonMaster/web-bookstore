@@ -35,6 +35,7 @@ public class ControllerCadastroAutor implements Serializable {
 		this.autor = new Autor();
 	}
 
+	@Transacional
 	public void salvar() {
 		this.serviceCadastroAutor.salvar(this.autor);
 		this.autor = new Autor();

@@ -10,8 +10,8 @@ import javax.persistence.EntityManager;
 
 import br.com.livraria.util.JPAUtil;
 
-@Transacional
-@Interceptor
+@Transacional // 3. define esta classe como gerenciada pela anotação 
+@Interceptor  // 4. define que esta classe é um interceptador em alusão ao Filter da especificação Servlet
 public class GerenciadorDeTransacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -19,11 +19,11 @@ public class GerenciadorDeTransacao implements Serializable {
 	private EntityManager entityManager;
 	
 	
-	@AroundInvoke
+	@AroundInvoke  // 6. especifica o escopo de atuação do metodo sendo "ao redor" com begin() e commit()
 	public Object executaTx(InvocationContext context) throws Exception {
 		this.entityManager.getTransaction().begin();
 		
-		// invoca o metodo que possui @transacional - retornando qualquer objeto: string, autor, livro...
+		// 5. context = objeto que possui um metodo que possui a anotação @transacional - retornando qualquer objeto: string, autor, livro...
 		Object resultado = context.proceed();
 		
 		this.entityManager.getTransaction().commit();

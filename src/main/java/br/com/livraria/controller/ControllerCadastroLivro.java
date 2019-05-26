@@ -16,6 +16,7 @@ import br.com.livraria.model.Autor;
 import br.com.livraria.model.Livro;
 import br.com.livraria.service.ServiceCadastroLivro;
 import br.com.livraria.service.impl.ServiceCadastroLivroImpl;
+import br.com.livraria.tx.Transacional;
 import br.com.livraria.util.ManipulationException;
 import br.com.livraria.util.NegocioException;
 import br.com.livraria.validadores.Validador;
@@ -36,6 +37,7 @@ public class ControllerCadastroLivro implements Serializable {
 		this.livro = new Livro();
 	}
 
+	@Transacional
 	public void salvar() {
 		this.serviceCadastroLivro.salvar(this.livro);
 		this.livro = new Livro();

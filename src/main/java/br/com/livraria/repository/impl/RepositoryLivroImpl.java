@@ -19,9 +19,7 @@ public class RepositoryLivroImpl implements RepositoryLivro {
 
 	@Override
 	public void salvar(Livro livro) {
-		this.entityManager.getTransaction().begin();
 		this.entityManager.persist(livro);
-		this.entityManager.getTransaction().commit();
 	}
 
 	@Override
