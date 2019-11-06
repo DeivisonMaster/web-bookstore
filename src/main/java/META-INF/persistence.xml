@@ -14,11 +14,11 @@
 			<property name="hibernate.connection.driver_class"
 				value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.url"
-				value="jdbc:mysql://localhost:3306/livraria" />
+				value="jdbc:mysql://localhost:3306/livraria?createDatabaseIfNotExist=true" />
 			<property name="hibernate.connection.username"
-				value="master" />
+				value="root" />
 			<property name="hibernate.connection.password"
-				value="matos132739" />
+				value="" />
 
 
 			<property name="hibernate.cache.provider_class"
