@@ -32,6 +32,10 @@ public class ControllerLogin implements Serializable{
 		this.usuario = new Usuario();
 	}
 	
+	public int dividePorZero() {
+		return "hello";
+	}
+	
 	
 	public String efetuaLogin() {
 		try {
